@@ -18,7 +18,7 @@ public class Frame extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtInput;
 	private JTextField txtSum;
-	private JTextField textProduct;
+	private JTextField txtProduct;
 
 	/**
 	 * Launch the application.
@@ -56,18 +56,24 @@ public class Frame extends JFrame {
 		JButton btnCalculate = new JButton("Calculate");
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int num = 0, sum = 0, product = 0;
 				try {
-					int num = Integer.parseInt(txtInput.getText());
-					
-					
+					num = Integer.parseInt(txtInput.getText());
+					if(Integer.signum(num) != 1){
+						txtSum.setText("Please input a positive value.");
+						txtProduct.setText("");
+						return;
+					}
 				} catch(NullPointerException|NumberFormatException x){
 					txtSum.setText("Please input a valid number.");
-					textProduct.setText("");
+					txtProduct.setText("");
 				}
-				
-				
-				
-				
+				for(int i=0;i<num;i++){
+					sum += i;
+					product *= i;
+				}
+				txtSum.setText(Integer.toString(sum));
+				txtProduct.setText(Integer.toString(product));
 			}
 		});
 		btnCalculate.setToolTipText("Calculate");
@@ -82,11 +88,11 @@ public class Frame extends JFrame {
 		txtSum.setBounds(10, 51, 180, 29);
 		contentPane.add(txtSum);
 		
-		textProduct = new JTextField();
-		textProduct.setToolTipText("Results");
-		textProduct.setEditable(false);
-		textProduct.setColumns(10);
-		textProduct.setBounds(194, 51, 180, 29);
-		contentPane.add(textProduct);
+		txtProduct = new JTextField();
+		txtProduct.setToolTipText("Results");
+		txtProduct.setEditable(false);
+		txtProduct.setColumns(10);
+		txtProduct.setBounds(194, 51, 180, 29);
+		contentPane.add(txtProduct);
 	}
 }
