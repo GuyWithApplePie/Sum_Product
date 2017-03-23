@@ -10,12 +10,15 @@ import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Frame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtInput;
-	private JTextField txtResult;
+	private JTextField txtSum;
+	private JTextField textProduct;
 
 	/**
 	 * Launch the application.
@@ -51,16 +54,39 @@ public class Frame extends JFrame {
 		txtInput.setColumns(10);
 		
 		JButton btnCalculate = new JButton("Calculate");
+		btnCalculate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					int num = Integer.parseInt(txtInput.getText());
+					
+					
+				} catch(NullPointerException|NumberFormatException x){
+					txtSum.setText("Please input a valid number.");
+					textProduct.setText("");
+				}
+				
+				
+				
+				
+			}
+		});
 		btnCalculate.setToolTipText("Calculate");
 		btnCalculate.setBounds(274, 11, 100, 29);
 		contentPane.add(btnCalculate);
 		
-		txtResult = new JTextField();
-		txtResult.setText("Please type your input in the text field.");
-		txtResult.setToolTipText("Results");
-		txtResult.setEditable(false);
-		txtResult.setColumns(10);
-		txtResult.setBounds(10, 51, 364, 29);
-		contentPane.add(txtResult);
+		txtSum = new JTextField();
+		txtSum.setText("Please type your input above.");
+		txtSum.setToolTipText("Results");
+		txtSum.setEditable(false);
+		txtSum.setColumns(10);
+		txtSum.setBounds(10, 51, 180, 29);
+		contentPane.add(txtSum);
+		
+		textProduct = new JTextField();
+		textProduct.setToolTipText("Results");
+		textProduct.setEditable(false);
+		textProduct.setColumns(10);
+		textProduct.setBounds(194, 51, 180, 29);
+		contentPane.add(textProduct);
 	}
 }
