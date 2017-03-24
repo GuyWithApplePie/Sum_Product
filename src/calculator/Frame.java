@@ -60,17 +60,18 @@ public class Frame extends JFrame {
 				try {
 					num = Integer.parseInt(txtInput.getText());
 					if(Integer.signum(num) != 1){
-						txtSum.setText("Please input a positive value.");
+						txtSum.setText("Please input a positive integer.");
 						txtProduct.setText("");
 						return;
+					}
+					for(int i=1;i<=num;i++){
+						sum += i;
+						product *= i;
+						System.out.println("Iteration "+i+": "+sum+" And "+product+".");
 					}
 				} catch(NullPointerException|NumberFormatException x){
 					txtSum.setText("Please input a valid number.");
 					txtProduct.setText("");
-				}
-				for(int i=0;i<num;i++){
-					sum += i;
-					product *= i;
 				}
 				txtSum.setText(Integer.toString(sum));
 				txtProduct.setText(Integer.toString(product));
