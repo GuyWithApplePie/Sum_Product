@@ -56,7 +56,8 @@ public class Frame extends JFrame {
 		JButton btnCalculate = new JButton("Calculate");
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int num = 0, sum = 0, product = 0;
+				int num = 0, sum = 0;
+				long product = 1;
 				try {
 					num = Integer.parseInt(txtInput.getText());
 					if(Integer.signum(num) != 1){
@@ -67,14 +68,13 @@ public class Frame extends JFrame {
 					for(int i=1;i<=num;i++){
 						sum += i;
 						product *= i;
-						System.out.println("Iteration "+i+": "+sum+" And "+product+".");
 					}
 				} catch(NullPointerException|NumberFormatException x){
 					txtSum.setText("Please input a valid number.");
 					txtProduct.setText("");
 				}
 				txtSum.setText(Integer.toString(sum));
-				txtProduct.setText(Integer.toString(product));
+				txtProduct.setText(Long.toString(product));
 			}
 		});
 		btnCalculate.setToolTipText("Calculate");
