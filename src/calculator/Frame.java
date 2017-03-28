@@ -1,3 +1,12 @@
+/*			Sum Product Calculator
+ * 
+ * Programmer: Nick Couzelis
+ * 		 Date: 28/03/2017
+ * 
+ * This program finds Sum of n and n! for n user input.
+ * Accurate to 20!
+ */
+
 package calculator;
 
 import java.awt.BorderLayout;
@@ -53,30 +62,39 @@ public class Frame extends JFrame {
 		contentPane.add(txtInput);
 		txtInput.setColumns(10);
 		
+		//When the Calculate button is pushed, the input it checked then the output is generated.
 		JButton btnCalculate = new JButton("Calculate");
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int num = 0, sum = 0;
-				long product = 1;
-				try {
+				// Variable List
+				int num = 0;		//User input
+				int	sum = 0;		//Sum of num
+				long product = 1;	//num factorial
+				
+				try {				//	Checking for bad input.
 					num = Integer.parseInt(txtInput.getText());
-					if(Integer.signum(num) != 1){
+					if(Integer.signum(num) != 1){ //Checking for positive number.
+						//Result of non-positive number. ex. "0","-7"
 						txtSum.setText("Please input a positive integer.");
 						txtProduct.setText("");
 						return;
 					}
+					//Creating Sum and Product
 					for(int i=1;i<=num;i++){
 						sum += i;
 						product *= i;
 					}
 				} catch(NullPointerException|NumberFormatException x){
+					//Results of a bad input. ex. "1.3","Apple"
 					txtSum.setText("Please input a valid number.");
 					txtProduct.setText("");
 				}
+				//Outputting values.
 				txtSum.setText(Integer.toString(sum));
 				txtProduct.setText(Long.toString(product));
 			}
 		});
+		
 		btnCalculate.setToolTipText("Calculate");
 		btnCalculate.setBounds(274, 11, 100, 29);
 		contentPane.add(btnCalculate);
